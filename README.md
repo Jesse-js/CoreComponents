@@ -1,1 +1,1 @@
-# CoreComponents 
+# Core Components of React Native
