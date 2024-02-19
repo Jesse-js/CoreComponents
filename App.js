@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   View,
   Text,
@@ -7,14 +7,28 @@ import {
   Button,
   Pressable,
   StatusBar,
+  ActivityIndicator,
+  Alert,
 } from "react-native";
 const logoImg = require("./assets/adaptive-icon.png");
 const state = false;
 export default function App() {
   const [isStatusBarHidden, setStatusBarHidden] = useState(false);
+  const [isActivityIndicatorVisible, setActivityIndicatorVisible] =
+    useState(false);
   return (
     <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
-      <StatusBar backgroundColor="lightgreen" barStyle="light-content" hidden={isStatusBarHidden} />
+      <StatusBar
+        backgroundColor="lightgreen"
+        barStyle="light-content"
+        hidden={isStatusBarHidden}
+      />
+      <ActivityIndicator />
+      <ActivityIndicator
+        size="large"
+        color="white"
+        animating={isActivityIndicatorVisible}
+      />
       <ScrollView>
         <Text>
           <Text style={{ color: "white" }}> Hello</Text> World
@@ -48,9 +62,24 @@ export default function App() {
       </ScrollView>
       <Button
         title="StatusBar"
-        onPress={() => setStatusBarHidden(!isStatusBarHidden)}
+        onPress={() => {
+          setStatusBarHidden(!isStatusBarHidden);
+          setActivityIndicatorVisible(!isActivityIndicatorVisible);
+        }}
         color="midnightblue"
         disabled={state}
+      />
+      <Button
+        title="Alert"
+        onPress={() =>
+          Alert.alert("Title", "Message", [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+            },
+            { text: "OK", onPress: () => console.log("OK Pressed") },
+          ])
+        }
       />
     </View>
   );
