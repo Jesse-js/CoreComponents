@@ -1,17 +1,28 @@
-import { View, Text, Image, ScrollView, Button, Pressable } from "react-native";
+import { useState } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  Button,
+  Pressable,
+  StatusBar,
+} from "react-native";
 const logoImg = require("./assets/adaptive-icon.png");
 const state = false;
 export default function App() {
+  const [isStatusBarHidden, setStatusBarHidden] = useState(false);
   return (
     <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
+      <StatusBar backgroundColor="lightgreen" barStyle="light-content" hidden={isStatusBarHidden} />
       <ScrollView>
         <Text>
           <Text style={{ color: "white" }}> Hello</Text> World
         </Text>
-        <Pressable onPress={() => console.log('Image pressed')}>
+        <Pressable onPress={() => console.log("Image pressed")}>
           <Image source={logoImg} style={{ width: 300, height: 300 }} />
         </Pressable>
-        <Pressable onPress={() => console.log('Text pressed')} >
+        <Pressable onPress={() => console.log("Text pressed")}>
           <Text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
             ullamcorper accumsan dui a tempor. Morbi sed sem suscipit,
@@ -36,8 +47,8 @@ export default function App() {
         />
       </ScrollView>
       <Button
-        title="Press"
-        onPress={() => console.log("Button pressed")}
+        title="StatusBar"
+        onPress={() => setStatusBarHidden(!isStatusBarHidden)}
         color="midnightblue"
         disabled={state}
       />
