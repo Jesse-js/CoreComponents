@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
+import Greet from "./components/Greet";
 const logoImg = require("./assets/adaptive-icon.png");
 const state = false;
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
     useState(false);
   return (
     <View style={{ flex: 1, backgroundColor: "plum", padding: 60 }}>
+      <Greet name="John Doe" />
       <StatusBar
         backgroundColor="lightgreen"
         barStyle="light-content"
